@@ -496,8 +496,7 @@ extension BLTNItemManager {
      * - parameter animated: Whether to animate dismissal. Defaults to `true`.
      */
 
-    @objc(dismissBulletinAnimated:)
-    public func dismissBulletin(animated: Bool = true) {
+    public func dismissBulletin(animated: Bool = true, completion: (() -> Void)? = nil) {
 
         assertIsPrepared()
         assertIsMainThread()
@@ -507,6 +506,7 @@ extension BLTNItemManager {
 
         bulletinController.dismiss(animated: animated) {
             self.completeDismissal()
+            completion?()
         }
 
         isPrepared = false
