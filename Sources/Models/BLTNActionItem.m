@@ -33,6 +33,7 @@
         self.appearance = [[BLTNItemAppearance alloc] init];
         self.interfaceBuilderType = [BLTNInterfaceBuilder class];
         self.actionButton = nil;
+        self.disclaimerButton = nil;
         self.alternativeButton = nil;
         self.actionHandler = nil;
         self.alternativeHandler = nil;
@@ -113,6 +114,10 @@
         self.actionButton = buttonWrapper.button;
     }
 
+    if (self.disclaimerButton) {
+        [buttonsStack addArrangedSubview:self.disclaimerButton];
+    }
+    
     if (self.alternativeButtonTitle) {
         UIButton *button = [interfaceBuilder makeAlternativeButtonWithTitle:self.alternativeButtonTitle];
         [buttonsStack addArrangedSubview:button];

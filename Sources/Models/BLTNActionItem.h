@@ -167,6 +167,8 @@
 
 @property (nonatomic, strong, nullable, readonly) UIButton *actionButton;
 
+@property (nonatomic, strong, nullable) UIButton *disclaimerButton;
+
 /**
  * The alternative button managed by the item.
  */
