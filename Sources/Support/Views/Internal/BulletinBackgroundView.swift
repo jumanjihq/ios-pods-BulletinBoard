@@ -61,7 +61,7 @@ class BulletinBackgroundView: UIView {
 
             let dimmingView = UIView()
             dimmingView.alpha = 0.0
-            dimmingView.backgroundColor = UIColor(white: 0.0, alpha: 0.5)
+            dimmingView.backgroundColor = UIColor(white: 0.0, alpha: 0.85)
             dimmingView.translatesAutoresizingMaskIntoConstraints = false
 
             return dimmingView
