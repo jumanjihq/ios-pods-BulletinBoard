@@ -97,7 +97,7 @@ class BulletinSwipeInteractionController: UIPercentDrivenInteractiveTransition, 
                     return
                 }
 
-                self.viewController.manager?.completeDismissal()
+                self.viewController.manager?.completeDismissal(notifyWhenDismissed: true)
 
             }
 

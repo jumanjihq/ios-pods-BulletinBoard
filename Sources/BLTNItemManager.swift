@@ -126,6 +126,7 @@ import UIKit
     fileprivate var isPreparing: Bool = false
     fileprivate var shouldDisplayActivityIndicator: Bool = false
     fileprivate var lastActivityIndicatorColor: UIColor = .black
+    public var didDismiss: (()->())?
 
     // MARK: - Initialization
 
@@ -496,7 +497,7 @@ extension BLTNItemManager {
      * - parameter animated: Whether to animate dismissal. Defaults to `true`.
      */
 
-    public func dismissBulletin(animated: Bool = true, completion: (() -> Void)? = nil) {
+    public func dismissBulletin(animated: Bool = true, notifyWhenDismissed: Bool = false, completion: (() -> Void)? = nil) {
 
         assertIsPrepared()
         assertIsMainThread()
@@ -505,7 +506,7 @@ extension BLTNItemManager {
         currentItem.manager = nil
 
         bulletinController.dismiss(animated: animated) {
-            self.completeDismissal()
+            self.completeDismissal(notifyWhenDismissed: notifyWhenDismissed)
             completion?()
         }
 
@@ -517,7 +518,7 @@ extension BLTNItemManager {
      * Tears down the view controller and item stack after dismissal is finished.
      */
 
-    @nonobjc func completeDismissal() {
+    @nonobjc func completeDismissal(notifyWhenDismissed: Bool) {
 
         currentItem.onDismiss()
 
@@ -538,6 +539,10 @@ extension BLTNItemManager {
         currentItem = self.rootItem
         itemsStack.removeAll()
 
+        if notifyWhenDismissed {
+            self.didDismiss?()
+        }
+        
     }
 
 }

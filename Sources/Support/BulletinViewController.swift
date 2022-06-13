@@ -351,7 +351,7 @@ extension BulletinViewController {
             return false
         }
 
-        manager?.dismissBulletin(animated: true)
+        manager?.dismissBulletin(animated: true, notifyWhenDismissed: true)
         return true
 
     }
@@ -501,7 +501,7 @@ extension BulletinViewController {
     }
 
     @objc func closeButtonTapped() {
-        manager?.dismissBulletin(animated: true)
+        manager?.dismissBulletin(animated: true, notifyWhenDismissed: true)
     }
 
 }
